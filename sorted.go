@@ -1,7 +1,11 @@
+//go:build go1.21
+// +build go1.21
+
+/*
 Open Source Initiative OSI - The MIT License (MIT):Licensing
 
 The MIT License (MIT)
-Copyright (c) 2013 - 2022 Ralph Caraveo (deckarep@gmail.com)
+Copyright (c) 2013 - 2023 Ralph Caraveo (deckarep@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -20,3 +24,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+
+package mapset
+
+import (
+	"cmp"
+	"slices"
+)
+
+// Sorted returns a sorted slice of a set of any ordered type in ascending order.
+// When sorting floating-point numbers, NaNs are ordered before other values.
+func Sorted[E cmp.Ordered](set Set[E]) []E {
+	s := set.ToSlice()
+	slices.Sort(s)
+	return s
+}

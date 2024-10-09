@@ -1,9 +1,9 @@
 Source: golang-github-deckarep-golang-set
-Section: devel
-Priority: extra
+Section: golang
+Priority: optional
 Maintainer: Debian Go Packaging Team <pkg-go-maintainers@lists.alioth.debian.org>
-Uploaders: Tianon Gravi <tianon@debian.org>, Tim Potter <tpot@hpe.com>
-Build-Depends: debhelper (>= 9), dh-golang, golang-go
+Uploaders: Tim Potter <tpot@hpe.com>
+Build-Depends: debhelper-compat (= 13), dh-golang, golang-go
 Standards-Version: 3.9.6
 Homepage: https://github.com/deckarep/golang-set
 Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-github-deckarep-golang-set
@@ -14,6 +14,7 @@ Testsuite: autopkgtest-pkg-go
 Package: golang-github-deckarep-golang-set-dev
 Architecture: all
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Multi-Arch: foreign
 Description: simple set type for the Go language
  The missing set collection for the Go language.
  .
