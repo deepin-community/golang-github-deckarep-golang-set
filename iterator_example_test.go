@@ -1,3 +1,4 @@
+/*
 Open Source Initiative OSI - The MIT License (MIT):Licensing
 
 The MIT License (MIT)
@@ -20,3 +21,40 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+
+package mapset
+
+import (
+	"testing"
+)
+
+type yourType struct {
+	name string
+}
+
+func Test_ExampleIterator(t *testing.T) {
+
+	s := NewSet(
+		[]*yourType{
+			{name: "Alise"},
+			{name: "Bob"},
+			{name: "John"},
+			{name: "Nick"},
+		}...,
+	)
+
+	var found *yourType
+	it := s.Iterator()
+
+	for elem := range it.C {
+		if elem.name == "John" {
+			found = elem
+			it.Stop()
+		}
+	}
+
+	if found == nil || found.name != "John" {
+		t.Fatalf("expected iterator to have found `John` record but got nil or something else")
+	}
+}
